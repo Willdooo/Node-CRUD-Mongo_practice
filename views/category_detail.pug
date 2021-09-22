@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1 Category: #{category.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h3 
+     dl
+        dt
+        dd #[strong Summary:] #{category.summary}
+
+
+    hr
+    h4 #[strong Sub-categories:] 
+      dl
+      each subcategory in sub_category
+        dt
+          a(href=subcategory.url) #{subcategory.name}
+        dd #{subcategory.summary}
+
+      else
+        p This Category has no sub-categories
+
+    hr
+    p 
+      a(href=category.url+'/delete') Delete category
+    p
+      a(href=category.url+'/update') Update category

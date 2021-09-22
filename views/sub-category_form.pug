@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text', placeholder='Name of Sub-category' name='name' required='true' value=(undefined===sub_category ? '' : sub_category.name) )
+      label(for="summary") Summary:
+      input#summary.form-control(type="text", placeholder="Short summary" name='summary' value=(undefined===sub_category ? '' : sub_category.summary))
+    div.form-group
+      label(for='category') Category:
+      select#category.form-control(type='select', placeholder='Select category' name='category' required='true' )
+        - category.sort(function(a, b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for tech in category
+          if sub_category
+            option(value=tech._id selected=(tech._id.toString()==sub_category.category._id || tech._id.toString()==sub_category.category) ? 'selected' : false) #{tech.name}
+          else
+            option(value=tech._id) #{tech.name}
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msgs

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1 Sub-Category: #{sub_category.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h3 
+     dl
+        dt
+        dd #[strong Summary:] #{sub_category.summary}
+        dt 
+        dd #[strong Part of:]
+          a(href=sub_category.category.url)  #{sub_category.category.name}
+
+    hr
+    h4 #[strong Technologies in this sub-category:] 
+      dl
+      each tech in item
+        dt
+          a(href=tech.url) #{tech.name}
+
+      else
+        p This Sub-Category has no technologies.
+
+    hr
+    p 
+      a(href=sub_category.url+'/delete') Delete sub-category
+    p
+      a(href=sub_category.url+'/update') Update sub-category

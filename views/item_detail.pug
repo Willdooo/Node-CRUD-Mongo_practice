@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 Technology: #{item.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h3 
+     dl
+        dt
+        dd #[strong Summary:] #{item.summary}
+        dt 
+        dd #[strong Part of:]
+          a(href=item.sub_category.url)  #{item.sub_category.name}
+
+    hr
+    p 
+      a(href=item.url+'/delete') Delete this technology
+    p
+      a(href=item.url+'/update') Update technology

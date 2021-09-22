@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 #{title}: #{sub_category.name}
+
+  if items.length
+
+    p #[strong Delete the following technologies before attempting to delete this sub-category.]
+
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Technologies
+
+      dl
+      each tech in items
+        dt
+          a(href=tech.url) #{tech.name}
+        dd #{tech.summary}
+
+  else
+    p Do you really want to delete this sub-category?
+
+    form(method='POST' action='')
+      div.form-group
+        input#sub_categoryid.form-control(type='hidden',name='sub_categoryid', required='true', value=sub_category._id )
+
+      button.btn.btn-primary(type='submit') Delete

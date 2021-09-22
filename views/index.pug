@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Programing Overview], a very basic Express website developed as a follow-up on Express tutorial. 
+
+  h1 Dynamic content
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The library has the following record counts:
+
+    ul
+      li #[strong Categories:] 
+        a(href="/catalog/categories") !{category_count}
+      li #[strong Sub-Categories:] 
+        a(href="/catalog/sub_categories") !{sub_category_count}
+      li #[strong Items: ] 
+        a(href="/catalog/items") !{item_count}
+      
